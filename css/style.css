@@ -979,7 +979,8 @@ footer {
 header {
   background-color: #1562a5;
   border-bottom: 1px solid rgba(255,255,255,0.3);
-  position: absolute;
+  position: relative;
+  z-index: 10;
   width: 100%;
 }
 header .logo {
@@ -1156,35 +1157,75 @@ nav.mobile .menu {
   }
 }
 #home .hero {
-  background-image: url("../img/bg1.jpg");
-  background-position: top center;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-          background-size: cover;
-  background-attachment: fixed;
+  position: relative;
+  background-color: #1562a5;
   color: #fff;
-  padding: 250px 0px 150px 0px;
+  padding: 0;
+  height: 620px;
 }
 #home .hero h5.kafedra {
-  margin: 0;
-  text-transform: uppercase;
-  font-size: 1em;
-  line-height: 1em;
-  letter-spacing: 3.6em;
-}
-#home .hero h1 {
   font-family: 'Alegreya Sans', sans-serif;
-  font-size: 10em;
   margin: 0;
+  padding: 190px 0 0 0;
+  text-transform: uppercase;
+  font-size: 1.35em;
+  line-height: 1em;
+  letter-spacing: 2.9em;
+  text-indent: 2.8em;
+}
+#home .hero h5.obv {
+  margin: -20px 0 0 0;
+  padding: 0 0 0 0;
+  text-transform: uppercase;
+  font-size: 14em;
   line-height: 1em;
 }
-#home .hero h5.detailed {
+#home .hero h1.kafedra-fullname {
+  text-transform: uppercase;
   margin: 0;
-  font-size: 1em;
+  font-size: 1.35em;
   line-height: 1em;
+  word-spacing: 0.45em;
 }
 #home .hero .buttons {
   padding: 100px 0 0 0;
+}
+#home .hero .bg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  background-image: url("../img/heroimage2.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+#home .hero .bg .colored-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: #1562a5;
+  -khtml-opacity: 0.8;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  position: absolute;
+}
+#home .hero .bg .clouds {
+  width: 300%;
+  height: 200%;
+  background-image: url("../img/clouds.png");
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: repeat-x;
+  -khtml-opacity: 0.1;
+  -moz-opacity: 0.1;
+  opacity: 0.1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
+  top: -50%;
+  position: absolute;
+  -webkit-animation: movingclouds 45s linear infinite;
+          animation: movingclouds 45s linear infinite;
 }
 .bg-white {
   background-color: #fff;
@@ -1282,6 +1323,90 @@ nav.mobile .menu {
   -webkit-background-size: cover;
           background-size: cover;
   background-attachment: fixed;
+}
+@-webkit-keyframes movingclouds {
+  0% {
+    margin-left: 0%;
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  5% {
+    margin-left: -5%;
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  10% {
+    margin-left: -10%;
+    -khtml-opacity: 0.05;
+    -moz-opacity: 0.05;
+    opacity: 0.05;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)";
+    filter: alpha(opacity=5);
+  }
+  70% {
+    margin-left: -70%;
+    -khtml-opacity: 0.15;
+    -moz-opacity: 0.15;
+    opacity: 0.15;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
+    filter: alpha(opacity=15);
+  }
+  100% {
+    margin-left: -100%;
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+}
+@keyframes movingclouds {
+  0% {
+    margin-left: 0%;
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  5% {
+    margin-left: -5%;
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
+  10% {
+    margin-left: -10%;
+    -khtml-opacity: 0.05;
+    -moz-opacity: 0.05;
+    opacity: 0.05;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=5)";
+    filter: alpha(opacity=5);
+  }
+  70% {
+    margin-left: -70%;
+    -khtml-opacity: 0.15;
+    -moz-opacity: 0.15;
+    opacity: 0.15;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
+    filter: alpha(opacity=15);
+  }
+  100% {
+    margin-left: -100%;
+    -khtml-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+  }
 }
 #page {
   display: block;
