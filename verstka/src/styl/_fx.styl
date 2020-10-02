@@ -1,0 +1,163 @@
+/* Underline From Center */
+.hvr-underline-from-center
+    display: inline-block
+    vertical-align: middle
+    -webkit-transform: perspective(1px) translateZ(0)
+    transform: perspective(1px) translateZ(0)
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0)
+    position: relative
+    overflow: hidden
+
+.hvr-underline-from-center:before
+    content: ""
+    position: absolute
+    z-index: -1
+    left: 51%
+    right: 51%
+    bottom: 22px
+    background: $active
+    height: 3px
+    -webkit-transition-property: left, right
+    transition-property: left, right
+    -webkit-transition-duration: 0.2s
+    transition-duration: 0.2s
+    -webkit-transition-timing-function: ease-out
+    transition-timing-function: ease-out
+
+.hvr-underline-from-center:hover:before,
+.hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before
+    left: 0
+    right: 0
+
+/* Shutter Out Vertical */
+$shutter_speed = 0.15s
+.hvr-shutter-out-vertical
+    display: inline-block
+    vertical-align: middle
+    -webkit-transform: perspective(1px) translateZ(0)
+    transform: perspective(1px) translateZ(0)
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0)
+    position: relative
+    background: transparent
+    -webkit-transition-property: color
+    transition-property: color
+    -webkit-transition-duration: $shutter_speed
+    transition-duration: $shutter_speed
+
+.hvr-shutter-out-vertical:before
+    content: ""
+    position: absolute
+    z-index: -1
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: $active
+    -webkit-transform: scaleY(0)
+    transform: scaleY(0)
+    -webkit-transform-origin: 50%
+    transform-origin: 50%
+    -webkit-transition-property: transform
+    transition-property: transform
+    -webkit-transition-duration: $shutter_speed
+    transition-duration: $shutter_speed
+    -webkit-transition-timing-function: ease-out
+    transition-timing-function: ease-out
+
+.hvr-shutter-out-vertical:hover,
+.hvr-shutter-out-vertical:focus, .hvr-shutter-out-vertical:active
+    color: white
+
+.hvr-shutter-out-vertical:hover:before,
+.hvr-shutter-out-vertical:focus:before,
+.hvr-shutter-out-vertical:active:before
+    -webkit-transform: scaleY(1)
+    transform: scaleY(1)
+
+
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+$hamburger-color = #fdfdfd
+$hamburger-shadow = 1px 1px 1px rgba(0,0,0,0.8)
+$hamburger-transp = 1px 1px 1px rgba(0,0,0,0.0)
+
+.hamburger
+    padding: 15px 15px
+    display: inline-block
+    cursor: pointer
+    transition-property: opacity, filter
+    transition-duration: 0.15s
+    transition-timing-function: linear
+    font: inherit
+    color: inherit
+    text-transform: none
+    background-color: transparent
+    border: 0
+    margin: 0
+    overflow: visible
+    &:hover
+        opacity: 0.7
+    &.is-active:hover
+        opacity: 0.7
+    &.is-active .hamburger-inner,
+    &.is-active .hamburger-inner::before,
+    &.is-active .hamburger-inner::after
+        background-color: $hamburger-color
+
+
+.hamburger-box
+    width: 40px
+    height: 24px
+    display: inline-block
+    position: relative
+
+.hamburger-inner
+    display: block
+    top: 50%
+    margin-top: -2px
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after
+    width: 40px
+    height: 4px
+    background-color: $hamburger-color
+    box-shadow $hamburger-shadow
+    border-radius: 4px
+    position: absolute
+    transition-property: transform
+    transition-duration: 0.15s
+    transition-timing-function: ease
+.hamburger-inner::before, .hamburger-inner::after
+    content: ""
+    display: block
+.hamburger-inner::before
+    top: -10px
+.hamburger-inner::after
+    bottom: -10px
+
+/*
+* Stand
+*/
+.hamburger--stand .hamburger-inner
+    transition: transform 0.075s 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19), background-color 0s 0.075s linear
+.hamburger--stand .hamburger-inner::before
+    transition: top 0.075s 0.075s ease-in, transform 0.075s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+.hamburger--stand .hamburger-inner::after
+    transition: bottom 0.075s 0.075s ease-in, transform 0.075s 0s cubic-bezier(0.55, 0.055, 0.675, 0.19)
+
+.hamburger--stand.is-active .hamburger-inner
+    transform: rotate(90deg)
+    background-color: transparent !important
+    box-shadow $hamburger-transp
+    transition: transform 0.075s 0s cubic-bezier(0.215, 0.61, 0.355, 1), background-color 0s 0.15s linear
+.hamburger--stand.is-active .hamburger-inner::before
+    top: 0
+    transform: rotate(-45deg)
+    transition: top 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1)
+.hamburger--stand.is-active .hamburger-inner::after
+    bottom: 0
+    transform: rotate(45deg)
+    transition: bottom 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1)

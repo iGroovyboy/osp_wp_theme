@@ -1,0 +1,140 @@
+@import "../css/slick.css"
+@import "../css/slick-theme.css"
+
+@require './_vars.styl'
+@require './_framework.styl'
+@require './_fx.styl'
+
+//@import "../css/jquery.mCustomScrollbar.css"
+//@import "../css/jquery.fancybox.css"
+
+// MAIN STYLINGv
+html
+    box-sizing border-box
+    width 100%
+    height 100%
+    outline none
+
+body
+    font-family $font-regular
+    // line-height 1.8
+    font-weight 300
+    font-style normal
+    width 100%
+    height 100%
+    background-attachment fixed
+    font-size 18px
+
+*, *:before, *:after
+	box-sizing: inherit;
+
+*
+	outline none
+
+// *::selection
+//     color $white
+//     background-color $shadow
+
+ul
+    margin 0
+    padding 0
+
+h2
+    text-align center
+
+a
+    text-decoration none
+    color black
+    font-weight bold
+
+h1,h2,h3
+    font-family $font-big
+
+button
+    padding 10px 30px
+    background-color transparent
+    border 2px solid white
+    color white
+    transition all 0.2s ease-out
+    cursor pointer
+    &:hover
+        border 2px solid $active
+
+.btn-blue
+    border 2px solid $main-bg
+    color $main-bg
+
+
+header
+    display block
+    +media-size(tiny)
+        display none
+
+main
+    min-height "calc(100vh - %s)" % $footerHeight
+    transition 0.2s filter ease-in
+
+
+section
+    padding 100px 0px 120px 0px
+    // &.last
+    //     padding 100px 0px 100px 0px
+
+
+footer
+    background-color $dark-bg
+    color white
+    padding 10px
+    height $footerHeight
+
+.blurred
+    filter blur(10px)
+
+.slider, .slider-single
+    width: 100%
+
+.bg-odd
+    background-color $white
+    color $black
+
+    .image-left, .image-right
+        border-color transparentify($main-bg, $white, 0.4)
+        +media-size(tiny)
+            border-color transparent
+
+
+.bg-even
+    background-color $sweet-bg
+    color $white
+
+    .image-left, .image-right
+        border-color transparentify($white, $dark-bg, 0.4)
+        +media-size(tiny)
+            border-color transparent
+
+.image
+    overflow hidden
+
+    img
+        width: 100%;
+
+.image-left
+    padding 0 25px 0 0
+    margin 0 25px 0 0
+    border-right-width 2px
+    border-right-style solid
+    +media-size(tiny)
+        margin 0
+        padding 0
+
+.image-right
+    padding 0 0 0 25px
+    margin 0 0 0 25px
+    border-left-width 2px
+    border-left-style solid
+    +media-size(tiny)
+        margin 0
+        padding 0
+
+@require './_home.styl'
+@require './_page.styl'

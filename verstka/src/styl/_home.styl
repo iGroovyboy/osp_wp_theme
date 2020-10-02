@@ -1,0 +1,232 @@
+header
+    background-color transparentify($dark-bg, $dark-bg, 1)
+    border-bottom 1px solid rgba(255,255,255,0.3)
+    position absolute
+    width 100%
+
+    .logo
+        width 200px
+        height $headerHeight
+        border 1px solid $active
+
+
+
+    .burger
+        opacity 0
+        position fixed
+        top 25px
+        right 25px
+        width 50px
+        height 50px
+        margin 0
+        padding 0
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.3), inset 1px 2px 3px rgba(0,0,0,0.3);
+        +media-size(mob)
+            opacity 1
+
+    nav.desktop
+        margin-left auto
+        +media-size(mob)
+            display none
+
+        .menu
+            display -webkit-flex
+            display -moz-flex
+            display -ms-flex
+            display -o-flex
+            display flex
+            list-style-type none
+            font-size 20px
+
+            li
+                margin-right 20px
+                line-height 80px
+                &:hover ul
+                    display block
+                    top 60px
+                    opacity 0.9
+                    pointer-events auto
+                    background-color transparentify($dark-bg, $dark-bg, 0.7)
+                a
+                    color white
+                    letter-spacing 0.5px
+                    text-decoration none
+                    transition all 0.2s ease-out
+                    font-weight normal
+                    &:hover
+                        color $active
+
+        .submenu-1
+            position absolute
+            display block
+            pointer-events: none;
+            top 80px
+            opacity 0
+            list-style-type none
+            margin 0
+            padding 20px
+            transition all 0.2s ease-in
+            background-color transparentify($dark-bg, $dark-bg, 0.3)
+            z-index 101
+            li
+                margin 0
+                padding 0 50px 0 0
+                line-height 2em
+
+.hamburger
+    display none
+    position fixed
+    top 25px
+    right 25px
+    border 2px solid transparent
+    z-index 10000
+    +media-size(mob)
+        display block
+        top 2px
+        right 2px
+    &:hover
+        border 2px solid transparent
+
+nav.mobile
+    display block
+    width 80%
+    height 100%
+    background-color white
+    position fixed
+    top 0
+    left -150vw
+    z-index 100
+    min-width 250px
+    opacity 0.95
+    transition: left 0.3s cubic-bezier(.45,.05,.55,.95)
+    +media-size(mob)
+        display block
+    .menu
+        list-style-type none
+.visible
+    left 0 !important
+
+.shadow
+    display none
+    background-color black
+    position fixed
+    opacity 0.8
+    width 100vw
+    height 100vh
+    top 0
+    transiton opacity 0.4s
+    +media-size(mob)
+        display none
+        // display block
+        opacity 0.4
+
+#home .hero
+    background-image url("../img/bg1.jpg");
+    background-position top center
+    background-repeat no-repeat
+    background-size cover
+    background-attachment fixed
+    color white
+    padding 250px 0px 150px 0px
+
+    h5.kafedra
+        margin 0
+        text-transform uppercase
+        font-size 1em
+        line-height 1em
+        letter-spacing 3.6em
+
+    h1
+        font-family $font-big
+        font-size 10em
+        margin 0
+        line-height 1em
+
+    h5.detailed
+        margin 0
+        font-size 1em
+        line-height 1em
+
+    .buttons
+        padding 100px 0 0 0
+
+.bg-white
+    background-color white
+
+.bg-grey
+    background-color $bg-gray
+
+.stats
+    list-style-type none
+    display -webkit-flex
+    display -moz-flex
+    display -ms-flex
+    display -o-flex
+    display flex
+    justify-content space-evenly
+    width 100%
+
+    li
+        width 300px
+
+    .stats-number
+        font-size 3em
+        font-family $font-big
+        color $active
+    .stats-descr
+        font-size 1.3em
+
+.team
+    li
+        list-style-type none
+        margin 0
+        text-align center
+    .foto img
+        width 350px
+        height 400px
+
+    p
+        margin 0
+
+    img
+        display block
+
+.reviews
+    li
+        text-align center
+        display flex !important
+    .foto
+        padding-left 20px
+        padding-right 20px
+        height 300px
+        width auto
+        // margin 0 auto
+
+    .review-text
+        display flex
+        flex-direction column
+        justify-content center
+        margin 0 auto
+
+    .name
+        font-weight bold
+
+    // &.slick-slide
+    //     display flex
+
+.bg-city1
+    background url('../img/city2.jpg') no-repeat center
+    background-size cover
+    background-attachment fixed
+    // height 300px
+    background-color: #1080b7
+    background-blend-mode: soft-light
+    h2, p
+        color: white
+
+.bg-city2
+    background url('../img/review.jpg') no-repeat center
+    background-size cover
+    background-attachment fixed
+

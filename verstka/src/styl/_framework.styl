@@ -1,0 +1,51 @@
+
+
+.container
+    max-width $maxPrjWidth
+    margin-right auto
+    margin-left auto
+    position relative
+    +media-size(pad)
+        max-width auto
+        margin 0 10px
+    +media-size(tiny)
+        max-width auto
+        margin 0 10px
+
+.row
+    display flex
+    +media-size(tiny)
+        flex-direction: column
+
+$col_padding=0 10px 0 0
+
+.col-1
+    padding $col_padding
+    width 8.3%
+
+.col-3
+    padding $col_padding
+    width 25%
+
+.col-4
+    padding $col_padding
+    width 33.3%
+    +media-size(tiny)
+        width 100%
+        padding 0
+
+.col-8
+    padding $col_padding
+    width 66.6%
+    +media-size(tiny)
+        width 100%
+        padding 0
+
+.col-12
+    padding $col_padding
+    width 100%
+
+.center
+    text-align center
+    justify-content center
+

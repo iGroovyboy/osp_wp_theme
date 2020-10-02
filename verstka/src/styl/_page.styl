@@ -1,0 +1,37 @@
+#page
+    display block
+    // background-color $main-bg
+
+    header
+        background-color transparentify($dark-bg, $dark-bg, 0.3)
+        position absolute
+        z-index 10
+
+    main
+        position relative
+
+    .hero
+        height "calc(200px + %s)" % $headerHeight
+        padding-top 1.3*$headerHeight
+        color $white
+        text-transform uppercase
+        background-color #1562a5
+        +media-size(tiny)
+            padding-top 1px
+            padding-bottom 0
+            height auto
+
+    section
+        padding 100px 0px 100px 0px
+        +media-size(tiny)
+            padding 20px 0px 20px 0px
+
+        h2
+            text-align left
+
+    section.map
+        width 100vw
+        height 350px
+        padding 0
+        position absolute
+        bottom 0

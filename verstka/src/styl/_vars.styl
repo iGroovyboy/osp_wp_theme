@@ -1,0 +1,99 @@
+@require './_normalize.styl'
+// @require './_fonts.styl'
+
+//Sizes
+$maxPrjWidth = 1140px
+$headerHeight = 100px
+$footerHeight = 80px
+
+// COLORS
+$bg-grad1= #e4e4e4
+$bg-grad0= #fff
+$bg-gray = rgba(19,84,153,0.3) //header
+
+$black = #000
+$white = #fff
+$shadow = rgba(59,59,59,0.8) //#595959
+//$shadow_t = rgba(59,59,59,0.6)
+
+$pale-grey = #f7f8fb
+$main-bg = #229ad5
+$dark-bg = #1562a5
+$sweet-bg = #1d85c3
+
+$active = #ffa700
+
+$font-regular = 'Arimo', sans-serif
+$font-big = 'Alegreya Sans', sans-serif
+$font-x = 'Rubik Mono One', sans-serif
+
+// $fZX = 'ZX Spectrum', monospace, sans-serif;
+
+opacity(n)
+    -khtml-opacity n
+    -moz-opacity n
+    opacity n
+    -ms-filter unquote('"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')"')
+    filter unquote('alpha(opacity=' + round(n * 100) + ')')
+
+vw(fontSizeinPixels, res = 1366)
+    vw = (res * 0.01) * 1px
+    a = (fontSizeinPixels/vw) * 1vw
+    b = round(a, 2)
+    unit(b, 'vw')
+    //unit(fontSizeinPixels, 'px')
+
+vh(SizeinPixels)
+    vw = (1050 * 0.01) * 1px
+    a = (SizeinPixels/vw) * 1vh
+    b = round(a, 2)
+    unit(b, 'vh')
+    //unit(SizeinPixels, 'px')
+
+
+fz(px, res = 1920)
+    font-size unit(px, 'px')
+    font-size px2vw(px, res)
+
+percent( part, total )
+    value = _strip-units( value )
+    total = _strip-units( total )
+    value / total * 100%
+
+media-size(range)
+    if range == "tiny"
+        @media screen and (max-width: 749px)
+            {block}
+    // else if range == "tiny-hor"
+    //     @media screen and (min-width: 376px) and (max-width: 667px)
+    //         {block}
+    else if range == "pad"
+        @media screen and (min-width: 750px) and (max-width: $maxPrjWidth)
+            {block}
+    else if range == "mob"
+        @media screen and (max-width: 750px)
+            {block}
+    // else if range == "mobile"
+    //     @media screen and (max-width: 1024px)
+    //         {block}
+    // else if range == "w1280"
+    //     @media screen and (min-width: 1025px)  and (max-width: 1366px)
+    //         {block}
+
+only-ie11()
+    /_:-ms-fullscreen, :root &
+        {block}
+
+only-ff()
+    body:not(:-moz-handler-blocked) &
+        {block}
+
+only-op()
+    /_:-o-prefocus, body:last-child &
+        {block}
+
+radial-grad( props )
+    add-property( "background-image", unquote( "-webkit-radial-gradient(" + join( ",", props ) + ")" ) )
+    add-property( "background-image", unquote( "-moz-radial-gradient(" + join( ",", props ) + ")" ) )
+    add-property( "background-image", unquote( "-ms-radial-gradient(" + join( ",", props ) + ")" ) )
+    add-property( "background-image", unquote( "-o-radial-gradient(" + join( ",", props ) + ")" ) )
