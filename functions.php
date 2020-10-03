@@ -178,3 +178,69 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Опции',
+		'menu_title'	=> 'Опции',
+		'menu_slug' 	=> 'theme-settings',
+		'capability'	=> 'edit_posts',
+		'position'      => false,
+//		'redirect'		=> false
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Настройки Главной страницы',
+		'menu_title'	=> 'Главная',
+		'menu_slug' 	=> 'theme-settings-home',
+		'parent_slug'	=> 'theme-settings',
+        'position'      => false,
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Дополнительно',
+		'menu_title'	=> 'Дополнительно',
+		'menu_slug' 	=> 'theme-settings-extra',
+		'parent_slug'	=> 'theme-settings',
+        'position'      => false,
+	));
+
+}
+
+function prepareMenuArray($menu) {
+    $arr = [];
+    foreach ( $menu as $i => $item ) {
+        $arr[ $item->ID ]['id']               = (int)$item->ID;
+        $arr[ $item->ID ]['title']            = $item->title;
+        $arr[ $item->ID ]['url']              = $item->url;
+        $arr[ $item->ID ]['menu_item_parent'] = (int)$item->menu_item_parent;
+    }
+    foreach ( $arr as $id => $item ) {
+        if( $item['menu_item_parent'] !== 0) {
+            $arr[$item['menu_item_parent']]['sub-menu'][$id] = $item;
+            unset($arr[$id]);
+        }
+    }
+    //3rd level
+    foreach ( $arr as $id => $item ) {
+        if ( ! isset( $item['id'] ) ) {
+            $parent_id = $id;
+            $menu = $item['sub-menu'];
+
+
+            foreach ($arr as $y => $top_item) {
+                if(isset($top_item['sub-menu']) ) {
+                    $sub_items = array_keys($top_item['sub-menu']);
+                    if(in_array($parent_id, $sub_items)){
+                        $arr[$y]['sub-menu'][$parent_id]['sub-menu'] = $menu;
+
+                    }
+                }
+            }
+            $arr[ $item['menu_item_parent'] ]['sub-menu'][ $id ] = $item;
+            unset( $arr[ $id ], $arr[ '' ] );
+        }
+    }
+
+    return $arr;
+}

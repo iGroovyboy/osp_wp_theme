@@ -11,23 +11,55 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'osp' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'osp' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'osp' ), 'osp', '<a href="https://github.com/iGroovyboy">Anton Babintsev</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+    <footer>
+        <div class="container">
+            <p class="center">(c) 2020 Кафедра ОСП. <?php printf( esc_html__( 'Theme by %2$s.', 'osp' ), '<a href="https://github.com/iGroovyboy">Anton Babintsev</a>' ); ?></p>
+        </div>
+    </footer>
+
+    <!-- <div class="burger-place"> -->
+    <button class="hamburger hamburger--stand" type="button">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <!-- </div> -->
+    <div class="shadow"></div>
+    <nav class="mobile">
+        <div class="row underline">
+            <button>+</button>
+        </div>
+        <ul class="menu">
+                <li><a href="">Головна</a></li>
+                <li><a href="">Новини</a></li>
+                <li><a href="">Кафедра</a>
+                    <ul class="submenu-1">
+                        <li><a href="">Iстория кафедри</a></li>
+                        <li><a href="">Склад</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Наука</a>
+                    <ul class="submenu-1">
+                        <li><a href="">Публикации</a></li>
+                        <li><a href="">Конференции</a></li>
+                        <li><a href="">Конференции</a></li>
+                        <li><a href="">Конференции</a></li>
+                        <li><a href="">Конференции</a></li>
+                        <li><a href="">Конференции</a></li>
+                        <li><a href="">Конференции</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Студенту</a></li>
+                <li><a href="">Контакт</a></li>
+            </ul>
+    </nav>
+
 </div><!-- #page -->
 
+<script src="js/html5shiv.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/libs.min.js"></script>
+<script src="js/main.js"></script>
 <?php wp_footer(); ?>
 
 </body>
