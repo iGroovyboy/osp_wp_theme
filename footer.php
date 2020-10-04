@@ -13,7 +13,7 @@
 
     <footer>
         <div class="container">
-            <p class="center">(c) 2020 Кафедра ОСП. <?php printf( esc_html__( 'Theme by %2$s.', 'osp' ), '<a href="https://github.com/iGroovyboy">Anton Babintsev</a>' ); ?></p>
+            <p class="center">&copy; <?php echo date('Y'); ?>, Кафедра ОБВ. Тема сайту: OSP <a href="https://github.com/iGroovyboy">Anton Babintsev</a></p>
         </div>
     </footer>
 

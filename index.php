@@ -56,127 +56,106 @@ get_header();
             </div>
         </section>
 
+        <?php if( get_field('services_enabled', 'option') ) : ?>
         <section class="bg-even">
             <div class="container center">
-                <h2>Услуги кафедры</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div class="row center">
-                    <div class="col-4"><h5>Подзаголовок</h5></div>
-                    <div class="col-4"><h5>Подзаголовок</h5></div>
-                    <div class="col-4"><h5>Подзаголовок</h5></div>
+                <h2><?php the_field('services_title', 'option');?></h2>
+                <div class="decription">
+                    <?php echo get_field('services_main_descr', 'option');?>
                 </div>
+                <?php if( !empty(get_field('services_repeater', 'option')) ) : ?>
+                <div class="row center">
+                    <?php foreach ( get_field('services_repeater', 'option') as $data ) : ?>
+                    <div class="col-4">
+                        <h5><?php echo $data['services_repeater_title'];?></h5>
+                        <div class="justified"><?php echo $data['services_repeater_text'];?></div>
+                    </div>
+                    <?php endforeach;?>
+                </div>
+                <?php endif; ?>
             </div>
         </section>
+        <?php endif; ?>
 
+        <?php if( get_field('contact_enabled', 'option') ) : ?>
         <section class="bg-odd center">
             <div class="container">
-                <h2>Свяжитесь с нами</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
+                <h2><?php the_field('contact_title', 'option') ;?></h2>
+                <p><?php the_field('contact_descr', 'option') ;?></p>
                 <div class="row center">
-                    <button class="hvr-shutter-out-vertical btn-blue">Контакт</button>
+                    <button onclick="location.href='<?php echo get_field('contact_url', 'option');?>'" href="" class="hvr-shutter-out-vertical btn-blue">Контакт</button>
+
                 </div>
             </div>
         </section>
+        <?php endif; ?>
 
+        <?php
+        $reviews_count = get_field('reviewes_count', 'option');
+        $reviews = getPostsByCat('reviews', $reviews_count);
+        if ( get_field( 'reviewes_enabled', 'option' ) && ! empty( $reviews ) ) : ?>
         <section class="bg-city1">
             <div class="container">
-                <h2>Отзывы</h2>
+                <h2>Вiдгуки</h2>
                 <div class="row">
                     <ul class="reviews slider-single">
+                        <?php foreach ( $reviews as $review ) : ?>
                         <li>
-                            <img class="foto" src="https://picsum.photos/300/400">
+                            <?php echo $review['img'];?>
                             <div class="review-text">
-                                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                                <p class="name">Lev Tolstoy</p>
+                                <?php $reviews_len = get_field('reviewes_length', 'option');
+                                if( strlen($review['content']) < 750){
+                                    echo $review['content'];
+                                } else {
+                                    echo $review['excerpt'];
+                                }
+                                ?>
+                                <p class="name"><?php echo $review['title'];?></p>
                             </div>
                         </li>
-                        <li>
-                            <img class="foto" src="">
-                            <div class="review-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <p class="name">Lev Tolstoy</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img class="foto" src="https://picsum.photos/200/400">
-                            <div class="review-text">
-                                <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p class="name">Lev Tolstoy</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img class="foto" src="">
-                            <div class="review-text">
-                                <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p class="name">Lev Tolstoy</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img class="foto" src="https://picsum.photos/1920/1080">
-                            <div class="review-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <p class="name">Lev Tolstoy</p>
-                            </div>
-                        </li>
+                        <?php endforeach;?>
                     </ul>
-
                 </div>
             </div>
         </section>
+        <?php endif; ?>
 
-
+        <?php
+        $staff = getPostsByCat('staff', 0, ['staff_job', 'staff_profile']);
+        if ( get_field( 'staff_enabled', 'option' ) && ! empty( $staff ) ) : ?>
         <section class="bg-odd">
             <div class="container">
                 <h2>Персонал кафедри</h2>
                 <div class="row">
                     <ul class="team slider">
-                        <li >
-                            <a class="foto " href=""><img src="https://picsum.photos/200/300"></a>
-                            <a class="name" href="">Lev Tolstoy 1</a>
-                            <p>Manager</p>
-                        </li>
-                        <li class="hvr-shutter-out-vertical">
-                            <a class="foto" href=""><img src="https://picsum.photos/300/200"></a>
-                            <a class="name" href="">Lev Tolstoy 2</a>
-                            <p>Manager</p>
-                        </li>
+                        <?php foreach ( $staff as $person ) : ?>
                         <li>
-                            <a class="foto" href=""><img src="https://picsum.photos/300/300"></a>
-                            <a class="name" href="">Lev Tolstoy 3</a>
-                            <p>Manager</p>
+                            <a class="foto" href="<?php echo $person['url'];?>"><?php echo $person['img'];?></a>
+                            <a class="name" href="<?php echo $person['url'];?>"><?php echo $person['title'];?></a>
+                            <p><?php echo $person['staff_job'];?></p>
                         </li>
-                        <li>
-                            <a class="foto" href=""><img src="https://picsum.photos/300/400"></a>
-                            <a class="name" href="">Lev Tolstoy 4</a>
-                            <p>Manager</p>
-                        </li>
-                        <li>
-                            <a class="foto" href=""><img src="https://picsum.photos/400/300"></a>
-                            <a class="name" href="">Lev Tolstoy 5</a>
-                            <p>Manager</p>
-                        </li>
+                        <?php endforeach;?>
                     </ul>
                 </div>
             </div>
         </section>
+        <?php endif; ?>
 
+        <?php
+        $partners = getPostsByCat('partners', 0, ['partner_site']);
+        if( get_field('partners_enabled', 'option') && ! empty( $partners ) ) : ?>
         <section class="bg-grey last">
             <div class="container">
                 <ul class="partners slider-4">
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
-                    <li><a href=""><img src="https://zakrademos.com/professional/wp-content/uploads/sites/46/2020/04/tlagency.png"></a></li>
+                    <?php foreach ( $partners as $partner ) : ?>
+                    <li>
+                        <a href="<?php echo $partner['partner_site'];?>" target="_blank" alt="<?php echo $partner['title'];?>"><?php echo $partner['img'];?></a>
+                    </li>
+                <?php endforeach;?>
                 </ul>
             </div>
         </section>
+        <?php endif; ?>
 
 	</main><!-- #main -->
 

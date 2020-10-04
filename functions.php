@@ -244,3 +244,37 @@ function prepareMenuArray($menu) {
 
     return $arr;
 }
+
+function getPostsByCat( $category, $count, $fields = null ) {
+    $the_query = new WP_Query( array( 'category_name' => $category, 'posts_per_page' => $count ) );
+    $posts = [];
+
+    if ( $the_query->have_posts() ) {
+        $counter = 0;
+        while ( $the_query->have_posts() ) {
+            $counter++;
+            $the_query->the_post();
+
+            $id = get_the_ID();
+            $current_post_object = get_post($id);
+
+            $posts[ $counter ] = [
+                'title'   => $current_post_object->post_title,
+                'img'     => get_the_post_thumbnail( $id, 'thumbnail', [ 'class' => 'foto' ] ),
+                'content' => $current_post_object->post_content,
+                'excerpt' => $current_post_object->post_excerpt,
+                'url'     => $current_post_object->guid,
+            ];
+
+            if ( ! empty( $fields ) ) {
+                foreach ( $fields as $field ) {
+                    $posts[ $counter ][ $field ] = get_field( $field );
+                }
+            }
+        }
+    }
+
+    /* Restore original Post Data */
+    wp_reset_postdata();
+    return $posts;
+}

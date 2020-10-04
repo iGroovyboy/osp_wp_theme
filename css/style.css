@@ -584,6 +584,9 @@ textarea {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.justified {
+  text-align: justify;
+}
 .hvr-underline-from-center {
   display: inline-block;
   vertical-align: middle;
@@ -864,8 +867,14 @@ a {
 }
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5 {
   font-family: 'Alegreya Sans', sans-serif;
+}
+h5 {
+  margin: 1.2em;
+  font-size: 1em;
 }
 button {
   padding: 10px 30px;
