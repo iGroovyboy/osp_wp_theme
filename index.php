@@ -12,7 +12,7 @@
  * @package osp
  */
 
-get_header();
+get_header('home');
 ?>
 
 	<main>

@@ -34,7 +34,7 @@
     <?php wp_body_open(); ?>
 
 
-    <div id="page">
+    <div id="home">
         <header>
             <div class="container row">
                 <div class="logo"><?php the_custom_logo();?></div>
