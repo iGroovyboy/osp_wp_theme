@@ -41,34 +41,11 @@
                 <nav class="desktop">
                     <ul class="menu">
                         <?php
-                        $main_menu = prepareMenuArray(wp_get_nav_menu_items( 'main-menu'));
-                        $main_menu_html = "";
-                        foreach ($main_menu as $id => $top_item) {
-                            $main_menu_html .= "<li>";
-                                $url   = $top_item['url'];
-                                $title = $top_item['title'];
-                            $main_menu_html .= "<a href='$url' class='hvr-underline-from-center'>$title</a>";
-
-//                            if( isset( $top_item['sub-menu'] ) ){
-//                                $main_menu_html .= "<ul class='sub-menu'>";
-//                                foreach ( $top_item['sub-menu'] as $sub_menu2 ) {
-//                                    $main_menu_html .= "<li>";
-//                                        $url2   = $sub_menu2['url'];
-//                                        $title2 = $sub_menu2['title'];
-//                                    $main_menu_html .= "<a href='$url2'>$title2</a>";
-//                                }
-//                                $main_menu_html .= "</ul>";
-//                            }
-
-                            $main_menu_html .= "<li>";
-                        }
-
-                        echo $main_menu_html;
+                        $main_menu = prepareMenuArray( wp_get_nav_menu_items( 'main-menu') );
+                        echo getMenuRender( $main_menu );
                         ?>
                     </ul>
                 </nav>
-
-
 
             </div>
         </header>

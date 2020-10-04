@@ -56,10 +56,10 @@ const path = {
 };
 
 const config = {
-    server: {
-       baseDir: "./dist"
-    },
-    // proxy: "por.loc",
+    // server: {
+    //    baseDir: "./dist"
+    // },
+    proxy: "osp.test",
     tunnel: false,
     // browser: "chrome",
     reloadOnRestart: false,

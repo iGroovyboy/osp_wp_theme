@@ -278,3 +278,43 @@ function getPostsByCat( $category, $count, $fields = null ) {
     wp_reset_postdata();
     return $posts;
 }
+
+function getMenuRender( $menu_items ) {
+    $main_menu_html = "";
+    foreach ($menu_items as $id => $top_item) {
+        $main_menu_html .= "<li>";
+            $url   = $top_item['url'];
+            $title = $top_item['title'];
+        $main_menu_html .= "<a href='$url' class='hvr-underline-from-center'>$title</a>";
+
+        //submenu-2
+        if( isset( $top_item['sub-menu'] ) ){
+            $main_menu_html .= "<ul class='sub-menu'>";
+            foreach ( $top_item['sub-menu'] as $sub_menu2 ) {
+                $main_menu_html .= "<li><div class='left-block'></div>";
+                    $url2   = $sub_menu2['url'];
+                    $title2 = $sub_menu2['title'];
+                $main_menu_html .= "<a href='$url2'>$title2</a>";
+
+                 //submenu-3
+                if( isset( $sub_menu2['sub-menu'] ) ) {
+                    $main_menu_html .= "<ul class='sub-menu-2'>";
+                    foreach ( $sub_menu2['sub-menu'] as $sub3_menu ) {
+                        $main_menu_html .= "<li><div class='left-block'></div>";
+                            $url3           = $sub3_menu['url'];
+                            $title3         = $sub3_menu['title'];
+                        $main_menu_html .= "<a href='$url3'>$title3</a>";
+
+                        $main_menu_html .= "</li>";
+                    }
+                    $main_menu_html .= "</ul>";
+                }
+                $main_menu_html .= "</li>";
+            }
+            $main_menu_html .= "</ul>";
+        }
+
+        $main_menu_html .= "</li>";
+    }
+    return $main_menu_html;
+}

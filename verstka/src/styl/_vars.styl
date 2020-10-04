@@ -68,10 +68,11 @@ media-size(range)
     //     @media screen and (min-width: 376px) and (max-width: 667px)
     //         {block}
     else if range == "pad"
-        @media screen and (min-width: 750px) and (max-width: $maxPrjWidth)
+        @media screen and (min-width: 750px) and (max-width: 1366px)
             {block}
+
     else if range == "mob"
-        @media screen and (max-width: 750px)
+        @media screen and (max-width: 749px)
             {block}
     // else if range == "mobile"
     //     @media screen and (max-width: 1024px)

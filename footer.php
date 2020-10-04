@@ -13,7 +13,7 @@
 
     <footer>
         <div class="container">
-            <p class="center">&copy; <?php echo date('Y'); ?>, Кафедра ОБВ. Тема сайту: OSP <a href="https://github.com/iGroovyboy">Anton Babintsev</a></p>
+            <p class="center">&copy; <?php echo date('Y'); ?>, Кафедра ОБВ. Тема сайту: OSP. Дизайн&розробка <a href="https://github.com/iGroovyboy">Anton Babintsev</a></p>
         </div>
     </footer>
 
@@ -23,6 +23,7 @@
         <span class="hamburger-inner"></span>
       </span>
     </button>
+
     <!-- </div> -->
     <div class="shadow"></div>
     <nav class="mobile">
@@ -30,36 +31,20 @@
             <button>+</button>
         </div>
         <ul class="menu">
-                <li><a href="">Головна</a></li>
-                <li><a href="">Новини</a></li>
-                <li><a href="">Кафедра</a>
-                    <ul class="submenu-1">
-                        <li><a href="">Iстория кафедри</a></li>
-                        <li><a href="">Склад</a></li>
-                    </ul>
-                </li>
-                <li><a href="">Наука</a>
-                    <ul class="submenu-1">
-                        <li><a href="">Публикации</a></li>
-                        <li><a href="">Конференции</a></li>
-                        <li><a href="">Конференции</a></li>
-                        <li><a href="">Конференции</a></li>
-                        <li><a href="">Конференции</a></li>
-                        <li><a href="">Конференции</a></li>
-                        <li><a href="">Конференции</a></li>
-                    </ul>
-                </li>
-                <li><a href="">Студенту</a></li>
-                <li><a href="">Контакт</a></li>
-            </ul>
+
+            <?php
+            $main_menu = prepareMenuArray( wp_get_nav_menu_items( 'main-menu') );
+            echo getMenuRender( $main_menu );
+            ?>
+        </ul>
     </nav>
 
 </div><!-- #page -->
 
-<script src="js/html5shiv.min.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/libs.min.js"></script>
-<script src="js/main.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/html5shiv.min.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/jquery.min.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/libs.min.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/main.js"></script>
 <?php wp_footer(); ?>
 
 </body>

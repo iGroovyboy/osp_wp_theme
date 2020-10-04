@@ -17,7 +17,7 @@ html
 
 body
     font-family $font-regular
-    // line-height 1.8
+    overflow-x hidden
     font-weight 300
     font-style normal
     width 100%
@@ -71,8 +71,181 @@ button
 
 header
     display block
+    background-color transparentify($dark-bg, $dark-bg, 1)
+    border-bottom 1px solid rgba(255,255,255,0.3)
+    position relative
+    z-index 10
+    width 100%
+    height $headerHeight
     +media-size(tiny)
         display none
+
+    .logo
+        display none
+        width 200px
+        height $headerHeight
+        border 1px solid $active
+
+    .burger
+        opacity 0
+        position fixed
+        top 25px
+        right 25px
+        width 50px
+        height 50px
+        margin 0
+        padding 0
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.3), inset 1px 2px 3px rgba(0,0,0,0.3);
+        +media-size(mob)
+            opacity 1
+
+    nav.desktop
+        margin-left auto
+        +media-size(pad)
+            margin-left 0
+            padding-left 1em
+        +media-size(mob)
+            display none
+
+        ul.menu
+            display -webkit-flex
+            display -moz-flex
+            display -ms-flex
+            display -o-flex
+            display flex
+            list-style-type none
+            font-size 20px
+
+            li
+                margin-right 20px
+                line-height 80px
+                position: relative
+                word-wrap: normal
+                &:hover .sub-menu
+                    display block
+                    top 60px
+                    opacity 0.9
+                    pointer-events auto
+                    background-color transparentify($dark-bg, $dark-bg, 0.8)
+                    box-shadow 0 15px 40px rgba(255,255,255,0.1)
+                &:hover > .left-block
+                    background-color: $active
+                    animation: pulse 1s ease-in-out infinite
+
+                .left-block
+                    width: 4px
+                    height: 100%
+                    background-color: transparent
+                    top: 0
+                    left: -20px
+                    position: absolute
+
+                a
+                    color white
+                    letter-spacing 0.5px
+                    text-decoration none
+                    transition all 0.2s ease-out
+                    font-weight normal
+                    &:hover
+                        color $active
+
+                .sub-menu
+                    position absolute
+                    display block
+                    pointer-events: none;
+                    top 80px
+                    opacity 0
+                    list-style-type none
+                    margin 0
+                    padding 20px
+                    transition all 0.2s ease-in
+                    background-color transparentify($dark-bg, $dark-bg, 0.3)
+                    z-index 101
+                    width max-content
+                    li
+                        margin 0
+                        padding 0 50px 0 0
+                        line-height 2em
+                        &:hover .sub-menu-2
+                            display block
+                            top 0em
+                            opacity 1
+                            pointer-events auto
+                            background-color transparentify($dark-bg, $sweet-bg, 1)
+
+
+                .sub-menu-2
+                    position absolute
+                    box-shadow 0 5px 30px rgba(0,0,0,0.4)
+                    display block
+                    pointer-events: none;
+                    top 80px
+                    left 50px
+                    opacity 0
+                    list-style-type none
+                    margin 0
+                    padding 20px
+                    transition all 0.2s ease-in
+                    background-color $sweet-bg
+                    z-index 102
+                    width max-content
+                    max-width 400px
+                    li
+                        margin 0
+                        padding 0 50px 0 0
+                        font-size: 1em
+                        line-height 2em
+                        &:hover > .left-block
+                           background-color: $active
+                           animation: none
+
+.hamburger
+    display none
+    position fixed
+    top 25px
+    right 25px
+    border 2px solid transparent
+    z-index 10000
+    +media-size(mob)
+        display block
+        top 2px
+        right 2px
+    &:hover
+        border 2px solid transparent
+
+nav.mobile
+    display block
+    width 80%
+    height 100%
+    background-color white
+    position fixed
+    top 0
+    left -150vw
+    z-index 100
+    min-width 250px
+    opacity 0.95
+    transition: left 0.3s cubic-bezier(.45,.05,.55,.95)
+    +media-size(mob)
+        display block
+    .menu
+        list-style-type none
+.visible
+    left 0 !important
+
+.shadow
+    display none
+    background-color black
+    position fixed
+    opacity 0.8
+    width 100vw
+    height 100vh
+    top 0
+    transiton opacity 0.4s
+    +media-size(mob)
+        display none
+        // display block
+        opacity 0.4
 
 main
     min-height "calc(100vh - %s)" % $footerHeight
@@ -139,6 +312,15 @@ footer
     +media-size(tiny)
         margin 0
         padding 0
+
+@keyframes pulse
+	0%
+        opacity 0
+    50%
+        opacity 1
+	100%
+        opacity 0
+
 
 @require './_home.styl'
 @require './_page.styl'
