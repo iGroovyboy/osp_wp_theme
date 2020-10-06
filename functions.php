@@ -319,24 +319,44 @@ function getMenuRender( $menu_items ) {
     return $main_menu_html;
 }
 
-/*
-Plugin Name: Gutenberg examples 01
-*/
-function gutenberg_examples_01_register_block() {
+add_action('acf/init', 'my_acf_blocks_init');
+function my_acf_blocks_init() {
 
-    // automatically load dependencies and version
-    $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+    // Check function exists.
+    if( function_exists('acf_register_block_type') ) {
 
-    wp_register_script(
-        'gutenberg-examples-01-esnext',
-        plugins_url( 'build/index.js', __FILE__ ),
-        $asset_file['dependencies'],
-        $asset_file['version']
-    );
+        // Register blocks
+		acf_register_block_type(array(
+			'name'				=> 'osp_section',
+			'title'				=> 'ОСП Раздел',
+			'description'		=> 'Блок контента, отделенные цветом и колонками.',
+			'category'			=> 'layout',
+			'mode'				=> 'preview',
+			'supports'			=> array(
+				'align' => true,
+				'mode' => false,
+				'__experimental_jsx' => true
+			),
+			'render_template' => 'template-parts/block-section.php'
+		));
 
-    register_block_type( 'gutenberg-examples/example-01-basic-esnext', array(
-        'editor_script' => 'gutenberg-examples-01-esnext',
-    ) );
+        acf_register_block_type(array(
+			'name'				=> 'osp_image',
+			'title'				=> 'ОСП Картинка',
+			'description'		=> 'Блок изобрежения с вертикальным односторонним обрамлением, или без.',
+			'category'			=> 'layout',
+			'mode'				=> 'preview',
+			'supports'			=> array(
+				'align' => true,
+				'mode' => false,
+				'__experimental_jsx' => true
+			),
+			'render_template' => 'template-parts/block-image.php'
+		));
 
+    }
 }
-add_action( 'init', 'gutenberg_examples_01_register_block' );
+
+add_action( 'after_setup_theme', function() {
+    add_theme_support( 'align-wide' );
+} ); 

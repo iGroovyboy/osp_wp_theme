@@ -44,8 +44,10 @@ h2
 
 a
     text-decoration none
-    color black
-    font-weight bold
+    //font-weight bold
+    color $active
+    &.post-edit-link
+        color $active
 
 h1,h2,h3, h4, h5
     font-family $font-big
@@ -270,7 +272,14 @@ footer
 .slider, .slider-single
     width: 100%
 
-.bg-odd
+
+.bg-white
+    background-color white
+
+.bg-grey
+    background-color $bg-gray
+
+.bg-light, .bg-odd,
     background-color $white
     color $black
 
@@ -280,7 +289,7 @@ footer
             border-color transparent
 
 
-.bg-even
+.bg-dark, .bg-even
     background-color $sweet-bg
     color $white
 
@@ -288,6 +297,10 @@ footer
         border-color transparentify($white, $dark-bg, 0.4)
         +media-size(tiny)
             border-color transparent
+
+.bg-orange
+    background-color $active
+    color $black
 
 .image
     overflow hidden

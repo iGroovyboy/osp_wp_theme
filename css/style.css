@@ -863,8 +863,10 @@ h2 {
 }
 a {
   text-decoration: none;
-  color: #000;
-  font-weight: bold;
+  color: #ffa700;
+}
+a.post-edit-link {
+  color: #ffa700;
 }
 h1,
 h2,
@@ -1182,33 +1184,57 @@ footer {
 .slider-single {
   width: 100%;
 }
-.bg-odd {
+.bg-white {
   background-color: #fff;
+}
+.bg-grey {
+  background-color: rgba(19,84,153,0.3);
+}
+.bg-light,
+.bg-odd,
+background-color $white {
   color: #000;
 }
+.bg-light .image-left,
 .bg-odd .image-left,
-.bg-odd .image-right {
+background-color $white .image-left,
+.bg-light .image-right,
+.bg-odd .image-right,
+background-color $white .image-right {
   border-color: rgba(0,3,150,0.4);
 }
 @media screen and (max-width: 749px) {
+  .bg-light .image-left,
   .bg-odd .image-left,
-  .bg-odd .image-right {
+  background-color $white .image-left,
+  .bg-light .image-right,
+  .bg-odd .image-right,
+  background-color $white .image-right {
     border-color: transparent;
   }
 }
+.bg-dark,
 .bg-even {
   background-color: #1d85c3;
   color: #fff;
 }
+.bg-dark .image-left,
 .bg-even .image-left,
+.bg-dark .image-right,
 .bg-even .image-right {
   border-color: rgba(255,255,255,0.4);
 }
 @media screen and (max-width: 749px) {
+  .bg-dark .image-left,
   .bg-even .image-left,
+  .bg-dark .image-right,
   .bg-even .image-right {
     border-color: transparent;
   }
+}
+.bg-orange {
+  background-color: #ffa700;
+  color: #000;
 }
 .image {
   overflow: hidden;
@@ -1326,12 +1352,6 @@ footer {
   position: absolute;
   -webkit-animation: movingclouds 45s linear infinite;
           animation: movingclouds 45s linear infinite;
-}
-.bg-white {
-  background-color: #fff;
-}
-.bg-grey {
-  background-color: rgba(19,84,153,0.3);
 }
 .stats {
   list-style-type: none;
