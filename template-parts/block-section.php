@@ -9,7 +9,7 @@
  */
 
 // Load values and assign defaults.
-$color = get_field('osp_section_bg_color') ?: 'osp_section_color_blue';
+$color = get_field('osp_section_bg_color') ?: 'osp_section_color_white';
 $has_container = get_field('osp_section_grid') == 'osp_section_grid_container';
 
 $class = [
@@ -24,13 +24,13 @@ if( !$is_preview ) {
 
     $html = "<section class='$cl'>";
     if ( $has_container ) {
-        $html .= "<div class='container'><div class='row'>";
+        $html .= "<div class='container'>";
     }
 
     $html .= "<InnerBlocks  />";
 
     if ( $has_container ) {
-        $html .= "</div></div>";
+        $html .= "</div>";
     }
     $html .= "</section>";
 
@@ -39,7 +39,7 @@ if( !$is_preview ) {
 }
 
 ?>
-<div>ВСТАВЬТЕ БЛОКИ</div>
-<div style="min-height: 50px; border: 1px dotted red" class="">
+<div>Раздел</div>
+<div style="min-height: 50px; border: 2px dotted red" class="">
     <InnerBlocks  />
 </div>

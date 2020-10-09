@@ -24,28 +24,6 @@
         </div>
     </section>
 
-    <section  class="bg-odd">
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="image image-left">
-                        123
-                    </div>
-                </div>
-                <div class="col-8">
-                    456
-                </div>
-            </div>
-        </div>
-    </section>
-
     <?php
     the_content();
-
-    wp_link_pages(
-        array(
-            'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'osp' ),
-            'after'  => '</div>',
-        )
-    );
     ?>

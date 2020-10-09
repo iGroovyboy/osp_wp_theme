@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main>
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <?php
             while ( have_posts() ) :

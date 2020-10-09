@@ -357,6 +357,31 @@ function my_acf_blocks_init() {
     }
 }
 
-add_action( 'after_setup_theme', function() {
-    add_theme_support( 'align-wide' );
-} ); 
+add_action('template_redirect', function () {
+    global $post;
+
+    $redir_data = get_field('redir_src_repeater', 'option');
+
+    foreach ( $redir_data as $data ) {
+        $cat_ids = array_values( $data['redir_src_category'] );
+        $redir_path = $data['redir_destc_flexible'][0]['redir_dest_link'] ?? $data['redir_destc_flexible'][0]['redir_dest_post'];
+
+        if ( is_single( $post->ID ) && has_category( $cat_ids, $post ) ) {
+            wp_redirect( $redir_path, 301 );
+            exit;
+        }
+    }
+
+});
+
+
+////wrap unsectioned blocks in section..
+//add_filter( 'render_block', function( $block_content, $block ) {
+//    dump('----------------------------------------<br>',$block_content, $block);
+//
+////    // Target core/* and core-embed/* blocks.
+////    if ( preg_match( '~^core/|core-embed/~', $block['blockName'] ) ) {
+////       $block_content = sprintf( '<div class="some__class">%s</div>', $block_content );
+////    }
+//    return $block_content;
+//}, PHP_INT_MAX - 1, 2 );

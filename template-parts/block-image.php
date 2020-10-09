@@ -22,7 +22,7 @@ if( ! $is_preview ) {
 }
 
 ?>
-<div>ВСТАВЬТЕ БЛОК ИЗОБРАЖЕНИЯ</div>
+<div>Изображение</div>
 <div style="min-height: 50px; border: 1px dotted blue" class='image <?php echo esc_attr($class_alignment); ?>'>
     <InnerBlocks  />
 </div>
