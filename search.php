@@ -36,19 +36,7 @@ get_header();
 
                 <section class="bg-<?php echo $class[$color_id];?>">
                     <div class="container">
-                        <article class="row">
-                        <?php the_post(); ?>
-                                <div class="col-4">
-                                    <?php the_title( '<h2>', '</h2>' ); ?>
-                                    <div class="image image-left">
-                                        <?php osp_post_thumbnail(); ?>
-                                    </div>
-                                </div>
-                                <div class="col-8">
-
-                                    <?php the_excerpt(); ?>
-                                </div>
-                        </article>
+                        <?php get_template_part( 'template-parts/content', 'search' );?>
                     </div>
                 </section>
 
@@ -58,16 +46,9 @@ get_header();
 
 		else : ?>
 
-			<section class="hero">
-                <div class="container">
-                    <h1 class="page-title">
-                        <?php
-                        /* translators: %s: search query. */
-                        printf( esc_html__( 'Пошук нічого не дав: %s', 'osp' ), '<span>' . get_search_query() . '</span>' );
-                        ?>
-                    </h1>
-                </div>
-            </section>
+
+
+            <?php get_template_part( 'template-parts/content', 'none' );?>
 
 		<?php endif; ?>
 
