@@ -10,41 +10,66 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main>
+
 
 		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'osp' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
-
+            <section class="hero">
+                <div class="container">
+                    <h1 class="page-title">
+                        <?php
+                        /* translators: %s: search query. */
+                        printf( esc_html__( 'Підсумки пошуку: %s', 'osp' ), '<span>' . get_search_query() . '</span>' );
+                        ?>
+                    </h1>
+                </div>
+            </section>
 			<?php
 			/* Start the Loop */
+            $class[1] = 'odd';
+			$class[0] = 'even';
+			$count = 0;
 			while ( have_posts() ) :
-				the_post();
+                $count++;
+                $color_id = $count % 2;
+                ?>
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+                <section class="bg-<?php echo $class[$color_id];?>">
+                    <div class="container">
+                        <article class="row">
+                        <?php the_post(); ?>
+                                <div class="col-4">
+                                    <?php the_title( '<h2>', '</h2>' ); ?>
+                                    <div class="image image-left">
+                                        <?php osp_post_thumbnail(); ?>
+                                    </div>
+                                </div>
+                                <div class="col-8">
 
-			endwhile;
+                                    <?php the_excerpt(); ?>
+                                </div>
+                        </article>
+                    </div>
+                </section>
+
+            <?php endwhile;
 
 			the_posts_navigation();
 
-		else :
+		else : ?>
 
-			get_template_part( 'template-parts/content', 'none' );
+			<section class="hero">
+                <div class="container">
+                    <h1 class="page-title">
+                        <?php
+                        /* translators: %s: search query. */
+                        printf( esc_html__( 'Пошук нічого не дав: %s', 'osp' ), '<span>' . get_search_query() . '</span>' );
+                        ?>
+                    </h1>
+                </div>
+            </section>
 
-		endif;
-		?>
+		<?php endif; ?>
 
 	</main><!-- #main -->
 
