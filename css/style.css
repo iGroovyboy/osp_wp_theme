@@ -1293,6 +1293,7 @@ background-color $white .image-right {
   text-transform: uppercase;
   font-size: 14em;
   line-height: 1em;
+  font-family: 'Arimo', sans-serif;
 }
 #home .hero h1.kafedra-fullname {
   text-transform: uppercase;
@@ -1300,6 +1301,8 @@ background-color $white .image-right {
   font-size: 1.35em;
   line-height: 1em;
   word-spacing: 0.45em;
+  margin-top: -0.5em;
+  letter-spacing: 0.03em;
 }
 #home .hero .buttons {
   padding: 100px 0 0 0;
@@ -1310,7 +1313,7 @@ background-color $white .image-right {
   overflow: hidden;
   position: absolute;
   background-image: url("../img/heroimage2.jpg");
-  background-position: top 100px center;
+  background-position: top center;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
