@@ -125,13 +125,13 @@ get_header('home');
         if ( get_field( 'staff_enabled', 'option' ) && ! empty( $staff ) ) : ?>
         <section class="bg-odd">
             <div class="container">
-                <h2>Персонал кафедри</h2>
+                <h2><a href="/kafedra/staff/">Персонал кафедри</a></h2>
                 <div class="row">
                     <ul class="team slider">
                         <?php foreach ( $staff as $person ) : ?>
                         <li>
-                            <a class="foto" href="<?php echo $person['url'];?>"><?php echo $person['img'];?></a>
-                            <a class="name" href="<?php echo $person['url'];?>"><?php echo $person['title'];?></a>
+                            <p class="foto"><?php echo $person['img'];?></p>
+                            <p class="name"><?php echo $person['title'];?></p>
                             <p><?php echo $person['staff_job'];?></p>
                         </li>
                         <?php endforeach;?>

@@ -35,7 +35,7 @@
         </div>
     </section>
 
-    <section  class="bg-odd">
+    <section class="bg-odd">
         <div class="container">
             <div class="row">
                 <div class="col-4">
