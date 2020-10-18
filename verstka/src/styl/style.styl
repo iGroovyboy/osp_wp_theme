@@ -56,20 +56,34 @@ h5
     margin: 1.2em;
     font-size: 1em;
 
+input[type=submit]
+    padding 10px 30px
+    background-color transparent
+    border 2px solid transparent
+
 button
     padding 10px 30px
     background-color transparent
-    border 2px solid white
-    color white
     transition all 0.2s ease-out
     cursor pointer
+
+button.btn-white, .btn-white > input[type=submit]
+    border 2px solid white
+    color white
     &:hover
         border 2px solid $active
+        color white
 
-.btn-blue
+button.btn-blue, .btn-blue > input[type=submit]
     border 2px solid $main-bg
     color $main-bg
+    &:hover
+        border 2px solid $active
+        color white
 
+div.wpcf7 .ajax-loader
+    position: absolute
+    top: 0.8em
 
 header
     display block
@@ -254,10 +268,11 @@ main
     transition 0.2s filter ease-in
 
 
-section
+section, div.section
     padding 100px 0px 120px 0px
     // &.last
     //     padding 100px 0px 100px 0px
+
 
 
 footer
@@ -279,7 +294,7 @@ footer
 .bg-grey
     background-color $bg-gray
 
-.bg-light, .bg-odd,
+.bg-light, .bg-odd
     background-color $white
     color $black
 
@@ -327,6 +342,12 @@ footer
         margin 0
         padding 0
 
+.left
+    text-align: left
+
+.right
+    text-align: right
+
 @keyframes pulse
 	0%
         opacity 0
@@ -338,3 +359,5 @@ footer
 
 @require './_home.styl'
 @require './_page.styl'
+@require './_contact.styl'
+

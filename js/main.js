@@ -1,6 +1,61 @@
 
 $(document).ready(function(){
 
+    $.easing.easeOutX = function(x) {
+        return Math.sqrt(1 - Math.pow(x - 1, 2));
+    };
+
+    $('.stats-number').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 2000 + Math.floor(Math.random() * 2000),
+            easing: 'easeOutX',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+
+    $.fn.isOnScreen = function () {
+        var win = $(window);
+
+        var viewport = {
+            top: win.scrollTop(),
+            left: win.scrollLeft()
+        };
+        viewport.right = viewport.left + win.width();
+        viewport.bottom = viewport.top + win.height();
+
+        var bounds = this.offset();
+        bounds.right = bounds.left + this.outerWidth();
+        bounds.bottom = bounds.top + this.outerHeight();
+
+        return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+
+    };
+
+    function elementInViewport(el) {
+        var top = el.offsetTop;
+        var left = el.offsetLeft;
+        var width = el.offsetWidth;
+        var height = el.offsetHeight;
+
+        while (el.offsetParent) {
+            el = el.offsetParent;
+            top += el.offsetTop;
+            left += el.offsetLeft;
+        }
+
+        return (
+            top >= window.pageYOffset &&
+            left >= window.pageXOffset &&
+            (top + height) <= (window.pageYOffset + window.innerHeight) &&
+            (left + width) <= (window.pageXOffset + window.innerWidth)
+        );
+    }
+
+
     $('.hamburger').click((e)=>{
         $('.shadow').toggle();
         $('.hamburger').toggleClass('is-active');
@@ -163,5 +218,20 @@ $(document).ready(function(){
 		var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi;
 		return regex.test(email);
 	}
+
+    function counter(el, start = 0, end, duration) {
+        let current   = start,
+            range     = end - start,
+            increment = end > start ? 50 : -1,
+            step  = Math.abs(Math.floor(duration / range)),
+
+            timer = setInterval(() => {
+                current += increment;
+                el.text(current);
+                if (current >= end) {
+                    clearInterval(timer);
+                }
+            }, step);
+    }
 
 });

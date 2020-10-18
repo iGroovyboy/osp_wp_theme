@@ -84,18 +84,61 @@ get_header('home');
                 <p><?php the_field('contact_descr', 'option') ;?></p>
                 <div class="row center">
                     <button onclick="location.href='<?php echo get_field('contact_url', 'option');?>'" href="" class="hvr-shutter-out-vertical btn-blue">Контакт</button>
-
                 </div>
             </div>
         </section>
         <?php endif; ?>
 
+        <?php $news = getPostsByCat('news', 5, null, 'date');?>
+        <?php if( get_field('news_enabled', 'option') && ! empty( $news ) ) : ?>
+        <section class="bg-even bg-news">
+<!--            <div class="bg">-->
+<!--                <div class="colored-overlay"></div>-->
+<!--            </div>-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-8 latest">
+                        <h2><a href="/news/">Новини</a></h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <ul class="news">
+                            <?php for ( $i = 2; $i <= count( $news ); $i++ ) : ?>
+                                <li>
+                                    <a href="<?php echo $news[$i]['permalink'];?>"><?php echo $news[$i]['title'];?></a>
+                                </li>
+                            <?php endfor;?>
+                        </ul>
+                    </div>
+                    <div class="col-8 latest">
+                        <h3><?php echo $news[1]['title'];?></h3>
+                        <div class="image">
+                            <?php echo $news[1]['img'];?>
+                        </div>
+                        <div>
+                            <?php echo $news[1]['excerpt'];?>
+                            <p class="right"><a href="<?php echo $news[1]['permalink'];?>">Далі</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+
+
         <?php
         $reviews_count = get_field('reviewes_count', 'option');
         $reviews = getPostsByCat('reviews', $reviews_count);
         if ( get_field( 'reviewes_enabled', 'option' ) && ! empty( $reviews ) ) : ?>
-        <section class="bg-city1">
-            <div class="container">
+        <section class="bg-reviews">
+            <div class="bg">
+                <div class="colored-overlay"></div>
+            </div>
+            <div class="container section">
                 <h2>Вiдгуки</h2>
                 <div class="row">
                     <ul class="reviews slider-single">

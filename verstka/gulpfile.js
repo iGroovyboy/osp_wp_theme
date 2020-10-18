@@ -59,7 +59,7 @@ const config = {
     // server: {
     //    baseDir: "./dist"
     // },
-    proxy: "osp.test",
+    proxy: "osp.pp.ua",
     tunnel: false,
     // browser: "chrome",
     reloadOnRestart: false,

@@ -530,6 +530,14 @@ textarea {
     margin: 0 10px;
   }
 }
+article > p,
+#comments {
+  max-width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+  position: relative;
+}
 .row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -879,22 +887,42 @@ h5 {
   margin: 1.2em;
   font-size: 1em;
 }
+input[type=submit] {
+  padding: 10px 30px;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
 button {
   padding: 10px 30px;
   background-color: transparent;
-  border: 2px solid #fff;
-  color: #fff;
   -webkit-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
   cursor: pointer;
 }
-button:hover {
-  border: 2px solid #ffa700;
+button.btn-white,
+.btn-white > input[type=submit] {
+  border: 2px solid #fff;
+  color: #fff;
 }
-.btn-blue {
+button.btn-white:hover,
+.btn-white > input[type=submit]:hover {
+  border: 2px solid #ffa700;
+  color: #fff;
+}
+button.btn-blue,
+.btn-blue > input[type=submit] {
   border: 2px solid #229ad5;
   color: #229ad5;
+}
+button.btn-blue:hover,
+.btn-blue > input[type=submit]:hover {
+  border: 2px solid #ffa700;
+  color: #fff;
+}
+div.wpcf7 .ajax-loader {
+  position: absolute;
+  top: 0.8em;
 }
 header {
   display: block;
@@ -1167,7 +1195,8 @@ main {
   transition: 0.2s filter ease-in;
   transition: 0.2s filter ease-in, 0.2s -webkit-filter ease-in;
 }
-section {
+section,
+div.section {
   padding: 100px 0px 120px 0px;
 }
 footer {
@@ -1191,25 +1220,21 @@ footer {
   background-color: rgba(19,84,153,0.3);
 }
 .bg-light,
-.bg-odd,
-background-color $white {
+.bg-odd {
+  background-color: #fff;
   color: #000;
 }
 .bg-light .image-left,
 .bg-odd .image-left,
-background-color $white .image-left,
 .bg-light .image-right,
-.bg-odd .image-right,
-background-color $white .image-right {
+.bg-odd .image-right {
   border-color: rgba(0,3,150,0.4);
 }
 @media screen and (max-width: 749px) {
   .bg-light .image-left,
   .bg-odd .image-left,
-  background-color $white .image-left,
   .bg-light .image-right,
-  .bg-odd .image-right,
-  background-color $white .image-right {
+  .bg-odd .image-right {
     border-color: transparent;
   }
 }
@@ -1267,6 +1292,12 @@ background-color $white .image-right {
     padding: 0;
   }
 }
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
 #home .hero {
   position: relative;
   background-color: #1562a5;
@@ -1307,7 +1338,7 @@ background-color $white .image-right {
 #home .hero .buttons {
   padding: 100px 0 0 0;
 }
-#home .hero .bg {
+.bg {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -1317,7 +1348,7 @@ background-color $white .image-right {
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
-#home .hero .bg .colored-overlay {
+.bg .colored-overlay {
   width: 100%;
   height: 100%;
   background-color: #1562a5;
@@ -1331,15 +1362,15 @@ background-color $white .image-right {
   -o-transition: 2s opacity ease-in;
   transition: 2s opacity ease-in;
 }
-#home .hero .bg .colored-overlay:hover,
-#home .hero .bg .colored-overlay:focus {
+.bg .colored-overlay:hover,
+.bg .colored-overlay:focus {
   -khtml-opacity: 0;
   -moz-opacity: 0;
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-#home .hero .bg .clouds {
+.bg .clouds {
   pointer-events: none;
   width: 300%;
   height: 200%;
@@ -1389,17 +1420,52 @@ background-color $white .image-right {
   text-align: center;
 }
 .team .foto img {
-  width: 350px;
+  width: auto;
   height: 400px;
+  margin: 0 auto;
 }
 .team .name {
   font-weight: bold;
 }
 .team p {
   margin: 0;
+  max-width: 350px;
+  overflow-x: hidden;
 }
 .team img {
   display: block;
+}
+.bg-news h2 {
+  text-align: left;
+}
+.bg-news ul li {
+  padding: 0.5em 0 0.5em 0;
+  list-style-type: none;
+  border-top: 1px solid #ccc;
+}
+.bg-news ul li:last-child {
+  border-bottom: 1px solid #ccc;
+}
+.bg-news .latest {
+  padding-left: 2em;
+}
+.bg-news .latest h3 {
+  margin-top: 0.5em;
+}
+.bg-reviews {
+  position: relative;
+  background-color: #1562a5;
+  color: #fff;
+  padding: 0;
+}
+.bg-reviews .bg {
+  background-image: url("../img/city2.jpg");
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+.bg-reviews h2,
+.bg-reviews p {
+  color: #fff;
 }
 .reviews li {
   text-align: center;
@@ -1432,18 +1498,6 @@ background-color $white .image-right {
 }
 .reviews .name {
   font-weight: bold;
-}
-.bg-city1 {
-  background: url("../img/city2.jpg") no-repeat center;
-  -webkit-background-size: cover;
-          background-size: cover;
-  background-attachment: fixed;
-  background-color: #1080b7;
-  background-blend-mode: soft-light;
-}
-.bg-city1 h2,
-.bg-city1 p {
-  color: #fff;
 }
 .bg-city2 {
   background: url("../img/review.jpg") no-repeat center;
@@ -1578,6 +1632,9 @@ background-color $white .image-right {
   padding: 0;
   position: absolute;
   bottom: 0;
+}
+.contact-form {
+  margin-bottom: 350px;
 }
 @-webkit-keyframes pulse {
   0% {

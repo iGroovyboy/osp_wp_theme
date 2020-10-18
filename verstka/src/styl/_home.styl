@@ -37,37 +37,37 @@
     .buttons
         padding 100px 0 0 0
 
-    .bg
+.bg
+    width 100%
+    height 100%
+    overflow: hidden
+    position: absolute
+    background-image url("../img/heroimage2.jpg");
+    background-position top center
+    background-attachment fixed
+    background-repeat no-repeat
+
+    .colored-overlay
         width 100%
         height 100%
-        overflow: hidden
+        background-color: $dark-bg
         position: absolute
-        background-image url("../img/heroimage2.jpg");
-        background-position top center
-        background-attachment fixed
-        background-repeat no-repeat
+        opacity 0.8
+        transition: 2s opacity ease-in
+        &:hover, &:focus
+            opacity 0
 
-        .colored-overlay
-            width 100%
-            height 100%
-            background-color: $dark-bg
-            position: absolute
-            opacity 0.8
-            transition: 2s opacity ease-in
-            &:hover, &:focus
-                opacity 0
-
-        .clouds
-            pointer-events: none
-            width 300%
-            height 200%
-            background-image url("../img/clouds.png")
-            background-size contain
-            background-repeat repeat-x
-            opacity 0.1
-            top: -50%
-            position: absolute
-            animation: movingclouds 45s linear infinite
+    .clouds
+        pointer-events: none
+        width 300%
+        height 200%
+        background-image url("../img/clouds.png")
+        background-size contain
+        background-repeat repeat-x
+        opacity 0.1
+        top: -50%
+        position: absolute
+        animation: movingclouds 45s linear infinite
 
 @keyframes movingclouds
 	0%
@@ -112,16 +112,52 @@
         margin 0
         text-align center
     .foto img
-        width 350px
+        width auto
         height 400px
+        margin 0 auto
+
     .name
         font-weight: bold
 
     p
         margin 0
+        max-width 350px
+        overflow-x hidden
 
     img
         display block
+
+.bg-news
+    h2
+        text-align left
+    ul
+        li
+            padding 0.5em 0 0.5em 0
+            list-style-type none
+            border-top 1px solid $light-grey
+            &:last-child
+                border-bottom 1px solid $light-grey
+
+    .latest
+        padding-left: 2em
+        h3
+            margin-top: 0.5em
+
+.bg-reviews
+    position: relative
+    background-color: $dark-bg
+    color white
+    padding 0
+    //background-attachment fixed
+    //background-blend-mode: soft-light
+    .bg
+        background-image url("../img/city2.jpg");
+        background-size cover
+        //background-position top center
+
+    h2, p
+        color: white
+
 
 .reviews
     li
@@ -146,15 +182,8 @@
     // &.slick-slide
     //     display flex
 
-.bg-city1
-    background url('../img/city2.jpg') no-repeat center
-    background-size cover
-    background-attachment fixed
-    // height 300px
-    background-color: #1080b7
-    background-blend-mode: soft-light
-    h2, p
-        color: white
+
+
 
 .bg-city2
     background url('../img/review.jpg') no-repeat center

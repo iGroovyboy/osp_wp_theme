@@ -245,8 +245,13 @@ function prepareMenuArray($menu) {
     return $arr;
 }
 
-function getPostsByCat( $category, $count, $fields = null ) {
-    $the_query = new WP_Query( array( 'category_name' => $category, 'posts_per_page' => $count ) );
+function getPostsByCat( $category, $count, $fields = null, $orderby = 'none', $order = 'DESC' ) {
+    $the_query = new WP_Query( array(
+        'category_name'  => $category,
+        'posts_per_page' => $count,
+        'order'          => $order,
+        'orderby'        => $orderby, // title | date | modified
+    ) );
     $posts = [];
 
     if ( $the_query->have_posts() ) {
@@ -259,11 +264,13 @@ function getPostsByCat( $category, $count, $fields = null ) {
             $current_post_object = get_post($id);
 
             $posts[ $counter ] = [
-                'title'   => $current_post_object->post_title,
-                'img'     => get_the_post_thumbnail( $id, 'thumbnail', [ 'class' => 'foto' ] ),
-                'content' => $current_post_object->post_content,
-                'excerpt' => $current_post_object->post_excerpt,
-                'url'     => $current_post_object->guid,
+                'id'        => $id,
+                'title'     => $current_post_object->post_title,
+                'img'       => get_the_post_thumbnail( $id, 'full', [ 'class' => 'foto' ] ),
+                'content'   => $current_post_object->post_content,
+                'excerpt'   => $current_post_object->post_excerpt ?: osp_excerpt($current_post_object->post_content),
+                'url'       => $current_post_object->guid,
+                'permalink' => get_permalink( $id  ),
             ];
 
             if ( ! empty( $fields ) ) {
@@ -374,6 +381,17 @@ add_action('template_redirect', function () {
 
 });
 
+function osp_excerpt($excerpt, $limit = 200, $points = '..'){
+	$excerpt = strip_tags( $excerpt );
+	if (strlen($excerpt) > $limit) {
+		$limit_excerpt = strpos( $excerpt, ' ', $limit );
+		$limit = $limit_excerpt ? $limit_excerpt : strlen( $excerpt );
+
+		return mb_substr($excerpt, 0, $limit, "utf-8").' '.$points;
+	}
+
+	return $excerpt;
+}
 
 ////wrap unsectioned blocks in section..
 //add_filter( 'render_block', function( $block_content, $block ) {

@@ -24,6 +24,4 @@
         </div>
     </section>
 
-    <?php
-    the_content();
-    ?>
+
