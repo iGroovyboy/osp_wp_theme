@@ -876,6 +876,20 @@ a {
 a.post-edit-link {
   color: #ffa700;
 }
+.bg-dark a {
+  color: #f7f8fb;
+  text-decoration: underline;
+  -webkit-text-decoration-color: rgba(255,255,255,0.31);
+          text-decoration-color: rgba(255,255,255,0.31);
+  text-decoration-thickness: 3px;
+}
+.bg-dark a.post-edit-link {
+  color: #f7f8fb;
+}
+article li {
+  list-style-type: square;
+  margin-bottom: 1rem;
+}
 h1,
 h2,
 h3,
